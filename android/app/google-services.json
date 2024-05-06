@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "199372105070",
+    "project_id": "kosh-d3923",
+    "storage_bucket": "kosh-d3923.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199372105070:android:be1d348c13e2acb7ee4d7f",
+        "android_client_info": {
+          "package_name": "com.app.kosh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199372105070-beio1r4rs2grjssrglpseh40fnkv2vb5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.kosh",
+            "certificate_hash": "800493ca39b8bf368f262c6ffc46a8ac366b533e"
+          }
+        },
+        {
+          "client_id": "199372105070-4j15mbrpmgap7giflsnaeq4tn2c467lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7pZjyDicD0qdaIck4rmknXBBV4nuF8SE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199372105070-4j15mbrpmgap7giflsnaeq4tn2c467lk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

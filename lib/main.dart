@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kosh/CreateProfileActivity.dart';
 import 'package:kosh/SpashActivity.dart';
-import 'package:kosh/shared/constants.dart';
 
 void main() async {
 

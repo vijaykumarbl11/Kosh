@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:kosh/LatestRateActivity.dart';
 import 'package:kosh/Screen1.dart';
 import 'package:kosh/Screen2.dart';
 import 'package:kosh/Screen3.dart';
@@ -67,7 +68,11 @@ class _MainActivityState extends State<MainActivity> {
                   color: Colors.white,
                 ),
                 onTap: () {
-                  null;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LatestRateActivity()),
+                  );
                 },
               ),
               const SizedBox(

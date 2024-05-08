@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Screen1 extends StatefulWidget {
   const Screen1({super.key});
@@ -21,33 +22,38 @@ class _Screen1State extends State<Screen1> {
                   return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
+
+                        String image="${snapshot.data!.docs[index]["post"]}";
                         return Container(
                           width: double.infinity,
                           margin: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black12),
-                              borderRadius: BorderRadius.circular(5)),
+
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.network(
-                                "${snapshot.data!.docs[index]["post"]}",
-                                height: 200,
+                             /* FadeInImage.assetNetwork(
+                                image:image,
+                                placeholder:"assets/images/placeholder.png" ,width: double.infinity,// your assets image path
+                                fit: BoxFit.contain,
+                              ),*/
+                             image!=""? Image.network(
+                                image,
                                 width: double.infinity,
                                 fit: BoxFit.contain,
-                              ),
-                               Container(
-                                 margin: const EdgeInsets.symmetric(horizontal: 10),
-                                 child: Column(
+                              ):const SpinKitCircle(color: Colors.white, size: 25),
+                              Container(
+                                margin: const EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-
                                     const SizedBox(
                                       height: 20,
                                     ),
                                     Text(
                                       "${snapshot.data!.docs[index]["title"]}",
-                                      style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(
                                       height: 10,
@@ -57,21 +63,20 @@ class _Screen1State extends State<Screen1> {
                                       style: const TextStyle(fontSize: 15),
                                     ),
                                     const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      "${snapshot.data!.docs[index]["more"]}",
-                                      style: const TextStyle(fontSize: 15),
-                                    ),
-                                    const SizedBox(
                                       height: 20,
                                     ),
-                                  ],
-                                                               ),
-                               ),
 
+                                  ],
+                                ),
+                              ),
+                              const Divider(
+                                color: Colors.black12,
+                                height: 20,
+                                thickness: 10,
+                              )
                             ],
                           ),
+
                         );
                       });
                 } else if (snapshot.hasError) {

@@ -8,6 +8,7 @@ import 'package:kosh/Screen2.dart';
 import 'package:kosh/Screen3.dart';
 import 'package:kosh/Screen4.dart';
 import 'package:kosh/SignUpActivity.dart';
+import 'package:kosh/UploadActivity.dart';
 
 class MainActivity extends StatefulWidget {
   const MainActivity({super.key});
@@ -54,7 +55,7 @@ class _MainActivityState extends State<MainActivity> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Kosh",
+          "कोश",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.blue,
@@ -159,15 +160,20 @@ class _MainActivityState extends State<MainActivity> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const UploadPostForm()),
+                      builder: (context) => const PostUpload()),
                 );
               },
             ),
             ListTile(
               leading: const Icon(Icons.upload_sharp),
-              title: const Text('Upload Need '),
+              title: const Text('Upload Query '),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const QueryUpload()),
+                );
               },
             ),
             ListTile(
@@ -175,6 +181,11 @@ class _MainActivityState extends State<MainActivity> {
               title: const Text(' Upload Rate '),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RateUpload()),
+                );
               },
             ),
             ListTile(

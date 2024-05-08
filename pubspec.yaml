@@ -77,6 +77,12 @@ flutter:
     - assets/images/google.png
     - assets/images/splashimage.png
     - assets/images/upload_image.png
+    - assets/images/increase.png
+    - assets/images/call.png
+    - assets/images/whatsapp.png
+    - assets/images/whatsappb.png
+    - assets/images/circle.png
+    - assets/images/placeholder.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

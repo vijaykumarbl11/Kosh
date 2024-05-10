@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -146,6 +147,8 @@ class _UploadPostFormState extends State<PostUpload> {
                     });
 
                     try {
+                      String userid=FirebaseAuth.instance.currentUser!.uid;
+                      String timestamp=DateTime.now().millisecondsSinceEpoch.toString();
                       String ct =
                       DateTime.now().millisecondsSinceEpoch.toString();
                       Reference reff = await FirebaseStorage.instance
@@ -169,6 +172,8 @@ class _UploadPostFormState extends State<PostUpload> {
                         "title": "$title1",
                         "des": "$dis1",
                         "id": "$newId",
+                        "userid":userid,
+                        "time":timestamp,
                         "post": imageUrl.toString()
                       })
                           .then((value) => ScaffoldMessenger.of(context)

@@ -83,6 +83,11 @@ flutter:
     - assets/images/whatsappb.png
     - assets/images/circle.png
     - assets/images/placeholder.png
+    - assets/images/like.png
+    - assets/images/likeb.png
+    - assets/images/comment.png
+    - assets/images/send.png
+    - assets/images/share.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

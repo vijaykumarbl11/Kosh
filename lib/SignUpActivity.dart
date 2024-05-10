@@ -78,20 +78,29 @@ class _SignUpActivityState extends State<SignUpActivity> {
                         await FirebaseAuth.instance
                             .signInWithCredential(credential)
                             .then((value) {
-
-                              User? user=FirebaseAuth.instance.currentUser;
-                              String? em=FirebaseAuth.instance.currentUser?.email;
-                              if(user!=null){
-                                FirebaseFirestore.instance.collection("Users").doc(user.uid)
-                                    .set({"userid": user.uid,"name":"","number":"","image":"","email":user.email})
-                                    .then((value) {
-                                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>const CreateProfileActivity(email:"asd123")));                                });
-
-
-                              }
-                        }
-
-                                );
+                          User? user = FirebaseAuth.instance.currentUser;
+                          String? em = FirebaseAuth.instance.currentUser?.email;
+                          if (user != null) {
+                            FirebaseFirestore.instance
+                                .collection("Users")
+                                .doc(user.uid)
+                                .set({
+                              "userid": user.uid,
+                              "name": "",
+                              "number": "",
+                              "image": "",
+                              "village":"",
+                              "email": user.email
+                            }).then((value) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CreateProfileActivity(
+                                              email: "asd123")));
+                            });
+                          }
+                        });
                       }
                     } catch (e) {
                       print('$e');

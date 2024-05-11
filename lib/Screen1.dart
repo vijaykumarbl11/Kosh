@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:kosh/CommentActivity.dart';
 
 class Screen1 extends StatefulWidget {
   const Screen1({super.key});
@@ -17,44 +17,17 @@ class Screen1 extends StatefulWidget {
 class _Screen1State extends State<Screen1> {
   bool isLike=false;
 
-  String myid=FirebaseAuth.instance.currentUser!.uid;
 
-  Future<bool> userExists(username) async {
-    return await FirebaseFirestore.instance.collection('users')
-        .where('userid', isEqualTo: username)
+
+  Future<bool> userExists(myid,postid) async {
+    return await FirebaseFirestore.instance.collection('Like&Comment')
+    .doc(postid).collection("Like")
+        .where('userid', isEqualTo: myid)
         .get()
         .then((value) => value.size > 0 ? true : false);
   }
 
-  login() async {
-    bool result = await userExists(myid);
 
-    // ignore: unrelated_type_equality_checks
-    if(result == true){
-      return InkWell(
-          onTap: (){
-
-            FirebaseFirestore.instance.collection("Like&Comment").doc(id).collection("Like").doc(userid)
-                .delete();
-
-          },
-          child: Image.asset("assets/images/likeb.png",width: 22,height: 22,)
-      );
-    }else{
-      return InkWell(
-          onTap: (){
-
-            FirebaseFirestore.instance.collection("Like&Comment").doc(id).collection("Like").doc(userid)
-                .set({
-              "id":id,
-              "userid":userid
-            });
-
-          },
-          child: Image.asset("assets/images/like.png",width: 22,height: 22,)
-      );
-    }
-  }
 
 
   @override
@@ -77,7 +50,7 @@ class _Screen1State extends State<Screen1> {
 
 
 
-
+                        String myid=FirebaseAuth.instance.currentUser!.uid;
 
 
                         return Container(
@@ -86,12 +59,6 @@ class _Screen1State extends State<Screen1> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
-                              /* FadeInImage.assetNetwork(
-                                image:image,
-                                placeholder:"assets/images/placeholder.png" ,width: double.infinity,// your assets image path
-                                fit: BoxFit.contain,
-                              ),*/
 
                               Container(
                                 margin: const EdgeInsets.symmetric(
@@ -197,22 +164,26 @@ class _Screen1State extends State<Screen1> {
 
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                   Expanded(flex: 1,
-                                       child:  Container(
-                                         child:  Builder(
-                                           builder: (context) {
-                                             if(userExists == true){
-                                               return InkWell(
-                                                   onTap: (){
+                                  /* Expanded(flex: 1,
+                                       child:  FutureBuilder<bool>(
+                                           future: userExists(myid,id),
+                                           builder: (context,snapshot2){
 
-                                                     FirebaseFirestore.instance.collection("Like&Comment").doc(id).collection("Like").doc(userid)
-                                                         .delete();
+                                             if( snapshot2.data == true){
 
-                                                   },
-                                                   child: Image.asset("assets/images/likeb.png",width: 22,height: 22,)
-                                               );
-                                             }else{
-                                               return InkWell(
+                                                return
+                                                 InkWell(
+                                                     onTap: (){
+
+                                                       FirebaseFirestore.instance.collection("Like&Comment").doc(id).collection("Like").doc(userid)
+                                                           .delete();
+
+                                                     },
+                                                     child: Image.asset("assets/images/likeb.png",width: 22,height: 22,)
+                                                 );
+                                             }
+                                             else if(snapshot2.data==false){
+                                              return InkWell(
                                                    onTap: (){
 
                                                      FirebaseFirestore.instance.collection("Like&Comment").doc(id).collection("Like").doc(userid)
@@ -225,12 +196,49 @@ class _Screen1State extends State<Screen1> {
                                                    child: Image.asset("assets/images/like.png",width: 22,height: 22,)
                                                );
                                              }
-                                           },
-                                         ),
+                                             else{
+                                               return const Text("Error");
+                                             }
+                                              *//*
+                                             if(snapshot.connectionState==ConnectionState.waiting){
+                                               return Center(child: SpinKitCircle());
+
+                                             }else{ if(snapshot.data == true){
+                                                 return InkWell(
+                                                     onTap: (){
+
+                                                       FirebaseFirestore.instance.collection("Like&Comment").doc(id).collection("Like").doc(userid)
+                                                           .delete();
+
+                                                     },
+                                                     child: Image.asset("assets/images/likeb.png",width: 22,height: 22,)
+                                                 );
+                                               }
+                                               else{
+                                                 return InkWell(
+                                                     onTap: (){
+
+                                                       FirebaseFirestore.instance.collection("Like&Comment").doc(id).collection("Like").doc(userid)
+                                                           .set({
+                                                         "id":id,
+                                                         "userid":userid
+                                                       });
+
+                                                     },
+                                                     child: Image.asset("assets/images/like.png",width: 22,height: 22,)
+                                                 );
+                                               }*//*
 
 
-                                   )),
-                                   Expanded(flex: 1,child:  Image.asset("assets/images/comment.png",width: 22,height: 22,)),
+
+                                                                              })),*/
+                                   Expanded(flex: 1,child:  Image.asset("assets/images/like.png",width: 22,height: 22,)),
+                                   Expanded(flex: 1,child:
+                                   InkWell(
+                                     onTap: (){
+                                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CommentActivity(id:id)));
+                                     },
+                                       child: Image.asset("assets/images/comment.png",width: 22,height: 22,))),
                                    Expanded(flex: 1,child:  Image.asset("assets/images/send.png",width: 22,height: 22,)),
                                     Expanded(flex: 1,child: Image.asset("assets/images/share.png",width: 22,height: 22,)),
                                   const Expanded(flex: 1,child:  Text("22-03-24 12:34 AM",style: TextStyle(fontSize: 10)),)
@@ -261,7 +269,7 @@ class _Screen1State extends State<Screen1> {
                   );
                 }
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: SpinKitCircle(color: Colors.white, size: 25));
               }
             }));
   }

@@ -151,7 +151,7 @@ class _UploadPostFormState extends State<PostUpload> {
                       String timestamp=DateTime.now().millisecondsSinceEpoch.toString();
                       String ct =
                       DateTime.now().millisecondsSinceEpoch.toString();
-                      Reference reff = await FirebaseStorage.instance
+                      Reference reff = FirebaseStorage.instance
                           .ref()
                           .child("postImage")
                           .child('$ct.png');

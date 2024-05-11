@@ -14,6 +14,14 @@ class SignUpActivity extends StatefulWidget {
 }
 
 class _SignUpActivityState extends State<SignUpActivity> {
+  Future<bool> userExists(myid) async {
+    return await FirebaseFirestore.instance
+        .collection('Users')
+        .where('userid', isEqualTo: myid)
+        .get()
+        .then((value) => value.size > 0 ? true : false);
+  }
+
   @override
   Widget build(BuildContext context) {
     //SignInWithGooglee signInWithGooglee=SignInWithGooglee();
@@ -89,15 +97,35 @@ class _SignUpActivityState extends State<SignUpActivity> {
                               "name": "",
                               "number": "",
                               "image": "",
-                              "village":"",
+                              "village": "",
                               "email": user.email
                             }).then((value) {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const CreateProfileActivity(
-                                              email: "asd123")));
+                                      const CreateProfileActivity(
+                                          email: "")));
+                            /*  FutureBuilder<bool>(
+                                future: userExists(user.uid),
+                                builder: (context, snapshot) {
+                                  print(snapshot.data.toString());
+                                 *//* if (snapshot.data == true) {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const CreateProfileActivity(
+                                                    email: "")));
+                                  } else {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const MainActivity()));
+                                  }*//*
+                                },
+                              );*/
                             });
                           }
                         });
